@@ -19,6 +19,7 @@ RUN echo "deb http://ppa.launchpad.net/iconnor/zoneminder-master/ubuntu `cat /et
                                         dialog \
                                         ntpdate \
                                         ffmpeg \
+                                        ssmtp \
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
                     && rm -rf /var/lib/apt/lists/*
@@ -80,7 +81,7 @@ RUN echo "!/bin/sh ntpdate 0.ubuntu.pool.ntp.org" >> /etc/cron.daily/ntpdate \
     && chmod 750 /etc/cron.daily/ntpdate
 
 
-VOLUME /var/lib/mysql /var/cache/zoneminder
+VOLUME /var/lib/mysql /var/cache/zoneminder /etc/ssmtp
 # to allow access from outside of the container  to the container service
 # at that ports need to allow access from firewall if need to access it outside of the server. 
 EXPOSE 80
